@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#"><h2>Formula 1 News</h2></a>
+
+
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+		        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item active"><a class="nav-link" href="#">Home </a></li>
+				<li class="nav-item"><a class="nav-link" href="/saved">Saved Articles</a></li>
+				<li class="nav-item"><a class="nav-link" href="/api">API </a></li>
+			</ul>
+		</div>
+		<a class="btn btn-outline-primary" id="scrapeBtn" href="/api/articles/scrape">Scrape New Articles!</a>
+	</div>
+</nav>
+
+<div class="jumbotron">
+	<div class="row">
+		<div class="col-md-12">
+			<h2>{{this.welcomeMsg}}</h2>
+		</div>
+	</div>
+
+
+	<div id="articles">
+		{{#each articles}}
+			<div class="alert alert-dark">
+				<div class="row">
+					<div class="col col-md-8">
+						<h4><a href="{{this.link}}">{{this.title}}</a></h4>
+						<p>{{this.intro}}</p></div>
+					<div class="col col-md-4">
+						<img src="{{this.imageLink}}" alt="{{this.title}}" class="img-thumbnail" style="height: 150px;">
+					</div>
+				</div>
+				<div class="row align-items-start">
+					<form class="form-inline" action="/api/articles/save/{{this.id}}" method="POST">
+						<button type="submit" class="btn btn-success">Save This Article</button>
+					</form>
+				</div>
+			</div>
+		{{/each}}
+	</div>
+</div>
